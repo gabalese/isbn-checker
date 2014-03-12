@@ -23,7 +23,8 @@ class MyTestCase(unittest.TestCase):
             "non_numeric": [
                 "ksjdfhg",
                 "98797656__2òijsg",
-                "978886632123O"
+                "978886632123O",
+                r'"9788-866-3248-81",'
             ]
         }
 
