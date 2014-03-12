@@ -9,30 +9,24 @@
 </head>
 <body ng-app="isbnchecker">
 
-<div class="container">
-    <div class="row span12">
-        <div class="span4"></div>
+<div class="container" align="center">
+    <div class="row">
         <div class="span4">
             <div class="page-header">
                 <h1>ISBN Checker</h1>
             </div>
         <div ng-controller="StatusResult" contenteditable="true">
             <span ng-repeat="book in libri" ng-model="libri">
-                <strong ng-class="{'text-success': book.status, 'text-error': !book.status}" ng-bind="book.isbn">
-
-                </strong>
+                <strong ng-class="{'text-success': book.status, 'text-error': !book.status}" ng-bind="book.isbn"></strong>
                 <br/>
             </span>
-            <button class="btn btn-warning text-center" type="button" ng-click="reset()">Reset</button>
+            <br/>
+            <button class="btn btn-large btn-warning" ng-if="libri[0]" type="button" ng-click="reset()">Reset</button>
         </div>
             <hr>
         </div>
-        <div class="span4"></div>
     </div>
-<div class="row span12">
-    <div class="span4">
-
-    </div>
+<div class="row">
     <div class="span4">
     <div ng-controller="IsbnForm">
         <form role="form">
@@ -47,7 +41,6 @@
             <a href="https://twitter.com/gabalese">@gabalese</a>
         </div>
     </div>
-    <div class="span4"></div>
 </div>
 </div>
 </body>
