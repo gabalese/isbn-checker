@@ -17,7 +17,7 @@
             </div>
         <div ng-controller="StatusResult" contenteditable="true">
             <span ng-repeat="book in libri" ng-model="libri">
-                <strong ng-class="{'text-success': book.status, 'text-error': !book.status}" ng-bind="book.isbn"></strong>
+                <strong ng-class="{'text-success': book.status, 'text-error': !book.status}" ng-bind="book.isbn"></strong>  <i ng-class="{'icon-ok': book.status, 'icon-remove': !book.status}"></i>
                 <br/>
             </span>
             <br/>
@@ -93,8 +93,5 @@
         resize(t);
     });
 }
-
-
-
 </script>
 </html>
