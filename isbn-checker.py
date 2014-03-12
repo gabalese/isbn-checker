@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+import os
 from checkisbn import is_valid as check_isbn
 
 app = Flask(__name__)
@@ -18,5 +19,6 @@ def hello_world(isbn):
 
 
 if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))  # Required by Heroku
     app.debug = True
-    app.run()
+    app.run(host="0.0.0.0", port=port)
