@@ -8,10 +8,13 @@ def is_valid(isbn):
     # in case of isbn13
     if len(isbn) == 13 and isbn[0:3] == "978" or "979":  # is it a ISBN? Thanks @librarythingtim
         for d, i in enumerate(isbn):
-            if (int(d) + 1) % 2 != 0:
-                digits_sum += int(i)
-            else:
-                digits_sum += int(i) * 3
+            try:
+                if (int(d) + 1) % 2 != 0:
+                    digits_sum += int(i)
+                else:
+                    digits_sum += int(i) * 3
+            except ValueError:
+                return False
         if digits_sum % 10 == 0:
             return True
         else:

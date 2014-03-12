@@ -11,10 +11,7 @@ def main():
 
 @app.route('/check/<isbn>')
 def hello_world(isbn):
-    try:
-        is_valid = check_isbn(isbn)
-    except Exception:
-        return make_response("Bad request", 400)
+    is_valid = check_isbn(isbn)
     return jsonify({
         "isbn": isbn,
         "status": is_valid
