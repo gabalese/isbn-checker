@@ -9,7 +9,7 @@
 </head>
 <body ng-app="isbnchecker">
 
-<div class="container text-center">
+<div class="container">
     <div class="row span12">
         <div class="span4"></div>
         <div class="span4">
@@ -23,6 +23,7 @@
                 </strong>
                 <br/>
             </span>
+            <button class="btn btn-warning text-center" type="button" ng-click="reset()">Reset</button>
         </div>
             <hr>
         </div>
@@ -59,6 +60,10 @@
 
     function StatusResult($scope, Data){
         $scope.libri = Data.books;
+        $scope.reset = function(){
+            Data.books.splice(0, Data.books.length);
+            console.log(Data.books);
+        }
     }
 
     function IsbnForm($scope, $http, Data){
