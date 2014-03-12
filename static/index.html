@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <title>ISBN Checker</title>
+</head>
+<body ng-app="isbnchecker">
+<div class="container">
+    <div class="row">
+        <div ng-controller="StatusResult">
+            <p></p>
+
+            <p ng-bind="data.status" ng-if="data.status"></p>
+
+            <p ng-bind="data.isbn" ng-if="data.isbn"></p>
+        </div>
+    </div>
+<div class="row">
+    <div ng-controller="IsbnForm">
+        <form role="form">
+            <label>ISBN<input type="text" ng-model="data.isbn"></label>
+            <hr>
+            <button type="button" class="btn btn-primary btn-large" ng-click="checkIsbn(data.isbn)">CHECK</button>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+<script>
+    var app = angular.module('isbnchecker', []);
+
+    app.factory('Data', function(){
+        return { "status": false, "isbn": false };
+    });
+
+    function StatusResult($scope, Data){
+        $scope.data = Data;
+    }
+
+    function IsbnForm($scope, $http, Data){
+        $scope.data = "";
+        $scope.checkIsbn = function(isbn){
+            $http.get("/check/"+isbn).success(function(data){
+                Data.isbn = data.isbn;
+                Data.status = data.status;
+                $scope.data = "";
+            });
+        }
+    }
+
+</script>
+</html>
