@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 import os
 from checkisbn import is_valid as check_isbn
 
@@ -11,7 +11,10 @@ def main():
 
 @app.route('/check/<isbn>')
 def hello_world(isbn):
-    is_valid = check_isbn(isbn)
+    try:
+        is_valid = check_isbn(isbn)
+    except Exception:
+        return make_response("Bad request", 400)
     return jsonify({
         "isbn": isbn,
         "status": is_valid
